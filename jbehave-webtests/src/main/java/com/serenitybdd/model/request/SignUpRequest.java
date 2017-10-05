@@ -1,8 +1,12 @@
 package com.serenitybdd.model.request;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import org.reflections.util.FilterBuilder;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SignUpRequest {
 
 
@@ -18,6 +22,25 @@ public class SignUpRequest {
         private String detailAddress2;
         private String detailAddress1;
         private String lastName;
+
+    public String getEmailConfirm() {
+        return emailConfirm;
+    }
+
+    public void setEmailConfirm(String emailConfirm) {
+        this.emailConfirm = emailConfirm;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    private String emailConfirm;
+        private String passwordConfirm;
 
 
 

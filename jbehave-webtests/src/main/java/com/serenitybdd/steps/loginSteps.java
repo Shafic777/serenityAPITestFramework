@@ -3,15 +3,15 @@ package com.serenitybdd.steps;
 
 import com.serenitybdd.model.responce.LoginResponse;
 import com.serenitybdd.specs.LoginSpec;
-import net.serenitybdd.demo.model.responce.*;
+//import net.serenitybdd.demo.model.responce.*;
 import org.jbehave.core.annotations.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+//import static org.hamcrest.Matchers.is;
 
 import java.io.IOException;
 
-import net.serenitybdd.demo.specs.*;
+//import net.serenitybdd.demo.specs.*;
 import static net.serenitybdd.rest.SerenityRest.given;
 
 public class loginSteps {

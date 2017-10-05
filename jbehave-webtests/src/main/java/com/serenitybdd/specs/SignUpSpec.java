@@ -13,15 +13,11 @@ public class SignUpSpec extends BaseSpec {
     @Autowired
     LoginResponse loginResponseObject;
 
-    @Autowired
-    LoginSpec loginSpecObject;
-
-
-
-    public LoginResponse createNewUser(SignUpRequest signUpRequest)
+   public LoginResponse createNewUser(SignUpRequest signUpRequest)
     {
-        String acees=loginSpecObject.getToken();
-        System.out.println("asasafsafas$$$$$"+acees);
+        LoginSpec loginSpecObject = new LoginSpec();
+
+
         String Result=
                     given()
                     .headers("client-id",client_Id ,"User-Agent",user_agent,"siteId",Site_id,"storeId",Store_id,"X-Requested-With","XMLHttpRequest","access-token",loginSpecObject.getToken(),"User-Agent",user_agent)

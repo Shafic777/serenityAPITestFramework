@@ -1,15 +1,19 @@
 package com.serenitybdd.specs;
 
+import com.serenitybdd.core.ScenarioContext;
 import com.serenitybdd.model.responce.LoginResponse;
 import com.serenitybdd.constants.Constant;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.ValidatableResponse;
+import net.thucydides.core.model.Story;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.util.HashMap;
 
+import static javax.swing.text.DefaultStyledDocument.ElementSpec.ContentType;
 import static net.serenitybdd.rest.SerenityRest.given;
 
 public class LoginSpec {
@@ -25,10 +29,10 @@ public class LoginSpec {
     public String getToken()
     {
 
-        Constant key = new Constant();
-        String response = given().headers("client-id", Constant.client_Id ,"client-secret", Constant.client_Secret,"User-Agent", Constant.user_agent).contentType(ContentType.JSON)
+         String response = given().headers("client-id", Constant.client_Id ,"client-secret", Constant.client_Secret,"User-Agent", Constant.user_agent).contentType(io.restassured.http.ContentType.JSON)
                         .log().all()
                         .post("https://maiw.hue.worksap.com:443/auth/hue/v1/authentication/authenticateClient").prettyPrint();
+
 
         JsonPath jsonPath = new JsonPath(response);
         System.out.println(jsonPath);
@@ -43,11 +47,12 @@ public class LoginSpec {
         loginData.put("login",username);
         loginData.put("password" ,password);
 
-        String loginRes= given().headers("client-id", Constant.client_Id ,"User-Agent", Constant.user_agent,"siteId", Constant.Site_id,"storeId", Constant.Store_id,"X-Requested-With","XMLHttpRequest","access-token",access_token).body(loginData)
-                .contentType(ContentType.JSON).log().all()
-                .post(Constant.loginURL).asString();
+        ValidatableResponse loginResult= given().headers("client-id", Constant.client_Id ,"User-Agent", Constant.user_agent,"siteId", Constant.Site_id,"storeId", Constant.Store_id,"X-Requested-With","XMLHttpRequest","access-token",access_token).body(loginData)
+                .contentType(io.restassured.http.ContentType.JSON).log().all()
+                .post(Constant.loginURL).then().log().all();
 
-
+        String loginRes=loginResult.toString();
+        System.out.println("LOg####:"+loginResult.extract().jsonPath().and().prettyPrint());
         loginResponse=objMapper(loginRes);
         return loginResponse;
     }
