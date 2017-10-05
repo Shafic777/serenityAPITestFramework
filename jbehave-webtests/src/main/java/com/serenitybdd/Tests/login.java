@@ -1,6 +1,5 @@
 package com.serenitybdd.Tests;
 
-
 import net.serenitybdd.jbehave.SerenityStory;
 
 /**

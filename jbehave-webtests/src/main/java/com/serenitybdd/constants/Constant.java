@@ -10,7 +10,7 @@ public class Constant {
     public static final String hostname="172.26.158.211";
     public static final Integer port=17050;
     public static final String basePath="http://"+hostname+":"+port;
-    public static final String loginURL=basePath+"/api/v1/login";
+    public static final String loginURL=basePath+"/api/v1/com.serenitybdd.Tests.login";
     public static final String signUpURL=basePath+"/api/v1/customers";
 
 

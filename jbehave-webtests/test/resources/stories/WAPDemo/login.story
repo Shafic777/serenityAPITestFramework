@@ -2,7 +2,7 @@ Meta:
 
 Narrative:
 As a user
-I want to login to system
+I want to com.serenitybdd.Tests.login to system
 
 Scenario: Login into system
 
