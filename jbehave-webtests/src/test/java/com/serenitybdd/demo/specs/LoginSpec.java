@@ -31,28 +31,27 @@ public class LoginSpec {
 
          String response = given().headers("client-id", Constant.client_Id ,"client-secret", Constant.client_Secret,"User-Agent", Constant.user_agent).contentType(io.restassured.http.ContentType.JSON)
                         .log().all()
-                        .post("https://maiw.hue.worksap.com:443/auth/hue/v1/authentication/authenticateClient").prettyPrint();
+                        .post("https://maiw.hue.worksap.com:443/auth/hue/v1/authentication/authenticateClient").asString();
 
 
         JsonPath jsonPath = new JsonPath(response);
-        System.out.println(jsonPath);
-        String accessToken = jsonPath.getString("accessToken");
 
-        return accessToken;
+        return jsonPath.getString("accessToken");
+
+
     }
 
     public LoginResponse login(String username, String password, String access_token)
     {
         HashMap<String,String> loginData = new HashMap();
-        loginData.put("com.serenitybdd.login",username);
+        loginData.put("login",username);
         loginData.put("password" ,password);
 
         ValidatableResponse loginResult= given().headers("client-id", Constant.client_Id ,"User-Agent", Constant.user_agent,"siteId", Constant.Site_id,"storeId", Constant.Store_id,"X-Requested-With","XMLHttpRequest","access-token",access_token).body(loginData)
                 .contentType(io.restassured.http.ContentType.JSON).log().all()
-                .post(Constant.loginURL).then().log().all();
+                .post(Constant.loginURL).then();
 
         String loginRes=loginResult.toString();
-        System.out.println("LOg####:"+loginResult.extract().jsonPath().and().prettyPrint());
         loginResponse=objMapper(loginRes);
         return loginResponse;
     }
@@ -63,6 +62,6 @@ public class LoginSpec {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return loginResponse;
     }
 }

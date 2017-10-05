@@ -22,7 +22,7 @@ public class SignUpSpec extends BaseSpec {
                     given()
                     .headers("client-id",client_Id ,"User-Agent",user_agent,"siteId",Site_id,"storeId",Store_id,"X-Requested-With","XMLHttpRequest","access-token",loginSpecObject.getToken(),"User-Agent",user_agent)
                     .body(signUpRequest)
-                    .contentType(ContentType.JSON).log().all()
+                    .contentType(ContentType.JSON)
                     .post(signUpURL).asString();
 
         loginResponseObject=resultMapper(Result);

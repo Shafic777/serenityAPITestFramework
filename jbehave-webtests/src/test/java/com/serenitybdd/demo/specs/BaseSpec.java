@@ -1,7 +1,6 @@
 package com.serenitybdd.demo.specs;
 
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.serenitybdd.model.responce.LoginResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -23,6 +22,6 @@ public class BaseSpec {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return loginResponseObject;
     }
 }
