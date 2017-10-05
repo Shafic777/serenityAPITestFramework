@@ -1,4 +1,4 @@
-package com.serenitybdd.specs;
+package com.serenitybdd.demo.specs;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;

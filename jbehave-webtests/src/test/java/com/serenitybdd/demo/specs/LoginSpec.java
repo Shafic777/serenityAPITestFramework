@@ -1,6 +1,6 @@
-package com.serenitybdd.specs;
+package com.serenitybdd.demo.specs;
 
-import com.serenitybdd.core.ScenarioContext;
+import com.serenitybdd.demo.core.ScenarioContext;
 import com.serenitybdd.model.responce.LoginResponse;
 import com.serenitybdd.constants.Constant;
 import io.restassured.http.ContentType;
@@ -44,7 +44,7 @@ public class LoginSpec {
     public LoginResponse login(String username, String password, String access_token)
     {
         HashMap<String,String> loginData = new HashMap();
-        loginData.put("com.serenitybdd.Tests.login",username);
+        loginData.put("com.serenitybdd.login",username);
         loginData.put("password" ,password);
 
         ValidatableResponse loginResult= given().headers("client-id", Constant.client_Id ,"User-Agent", Constant.user_agent,"siteId", Constant.Site_id,"storeId", Constant.Store_id,"X-Requested-With","XMLHttpRequest","access-token",access_token).body(loginData)

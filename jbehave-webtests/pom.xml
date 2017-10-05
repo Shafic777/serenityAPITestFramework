@@ -34,12 +34,12 @@
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
             <version>${serenity.version}</version>
-            <!-- <exclusions>
+             <exclusions>
                  <exclusion>
                      <groupId>commons-collections</groupId>
                      <artifactId>commons-collections</artifactId>
                  </exclusion>
-              </exclusions>-->
+              </exclusions>
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
@@ -80,12 +80,16 @@
                  <artifactId>spring-boot-starter-web</artifactId>
                  <version>1.5.7.RELEASE</version>
              </dependency>-->
-
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.2</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
+          <!--  <scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -185,15 +189,18 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.18</version>
                 <configuration>
-                   <!-- <includes>
-                        <include>**/com.serenitybdd.Tests.login.java</include>
-                    </includes>-->
-                    <!-- <systemProperties>
-                         <webdriver.driver>${webdriver.driver}</webdriver.driver>
-                         <surefire.rerunFailingTestsCount>${surefire.rerunFailingTestsCount}</surefire.rerunFailingTestsCount>
-                         <surefire.rerunFailingTestsCount>${surefire.rerunFailingTestsCount}</surefire.rerunFailingTestsCount>
-                     </systemProperties>-->
+                    <includes>
+                        <include>**/demo/*.java</include>
+                    </includes>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -241,7 +248,7 @@
                     </rules>
                 </configuration>
             </plugin>
-            <plugin>
+           <!-- <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.18</version>
                 <configuration>
@@ -258,7 +265,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
             <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>

@@ -1,4 +1,4 @@
-package com.serenitybdd.fixtures;
+package com.serenitybdd.demo.fixtures;
 
 import com.serenitybdd.model.request.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
-package com.serenitybdd.steps;
+package com.serenitybdd.demo.steps;
 
-import com.serenitybdd.fixtures.SignUpRequestData;
+import com.serenitybdd.demo.fixtures.SignUpRequestData;
 import com.serenitybdd.model.request.SignUpRequest;
 import com.serenitybdd.model.responce.LoginResponse;
-import com.serenitybdd.specs.SignUpSpec;
+import com.serenitybdd.demo.specs.SignUpSpec;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.springframework.beans.factory.annotation.Autowired;

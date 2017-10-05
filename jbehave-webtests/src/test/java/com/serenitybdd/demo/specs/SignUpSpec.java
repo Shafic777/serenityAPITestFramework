@@ -1,4 +1,4 @@
-package com.serenitybdd.specs;
+package com.serenitybdd.demo.specs;
 
 import com.serenitybdd.model.responce.LoginResponse;
 import io.restassured.http.ContentType;

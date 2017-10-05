@@ -1,4 +1,4 @@
-package com.serenitybdd.core;
+package com.serenitybdd.demo.core;
 
 import org.jbehave.core.annotations.BeforeScenario;
 import org.springframework.beans.factory.ObjectFactory;

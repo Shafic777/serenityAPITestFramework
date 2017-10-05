@@ -1,4 +1,4 @@
-package com.serenitybdd.core;
+package com.serenitybdd.demo.core;
 
 
 import org.springframework.beans.factory.config.*;

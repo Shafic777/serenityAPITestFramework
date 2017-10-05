@@ -1,7 +1,7 @@
 Meta:
 
 Narrative:
-As a user
+As a user by shafic
 I want to perform an action
 So that I can achieve a business goal
 

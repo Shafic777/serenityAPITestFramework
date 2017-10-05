@@ -1,8 +1,8 @@
-package com.serenitybdd.steps;
+package com.serenitybdd.demo.steps;
 
 
 import com.serenitybdd.model.responce.LoginResponse;
-import com.serenitybdd.specs.LoginSpec;
+import com.serenitybdd.demo.specs.LoginSpec;
 //import net.serenitybdd.demo.model.responce.*;
 import org.jbehave.core.annotations.*;
 
@@ -17,7 +17,7 @@ import static net.serenitybdd.rest.SerenityRest.given;
 public class loginSteps {
 
 
-    com.serenitybdd.specs.LoginSpec LoginSpec =new LoginSpec();
+    LoginSpec LoginSpec =new LoginSpec();
     public String access_token;
 
     @Given("a login credentials")
