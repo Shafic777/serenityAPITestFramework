@@ -13,15 +13,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
 import java.util.HashMap;
 
+import static com.serenitybdd.constants.Constant.loginURL;
 import static javax.swing.text.DefaultStyledDocument.ElementSpec.ContentType;
 import static net.serenitybdd.rest.SerenityRest.given;
+import static net.serenitybdd.rest.SerenityRest.rest;
 
-public class LoginSpec {
+public class LoginSpec extends BaseSpec {
 
     @Autowired
     LoginResponse loginResponse;
 
 
+    String hostname= envVariables.getProperty("serenity.hostname");
+    String port=envVariables.getProperty("serenity.port");
 
     ObjectMapper mapper = new ObjectMapper();
 
@@ -29,14 +33,11 @@ public class LoginSpec {
     public String getToken()
     {
 
-         String response = given().headers("client-id", Constant.client_Id ,"client-secret", Constant.client_Secret,"User-Agent", Constant.user_agent).contentType(io.restassured.http.ContentType.JSON)
-                        .log().all()
-                        .post("https://maiw.hue.worksap.com:443/auth/hue/v1/authentication/authenticateClient").asString();
+         ValidatableResponse response = rest().headers("client-id", Constant.client_Id ,"client-secret", Constant.client_Secret,"User-Agent", Constant.user_agent).contentType(io.restassured.http.ContentType.JSON)
+                         .post("https://maiw.hue.worksap.com:443/auth/hue/v1/authentication/authenticateClient").then().log().all();
 
 
-        JsonPath jsonPath = new JsonPath(response);
-
-        return jsonPath.getString("accessToken");
+        return response.extract().jsonPath().get("accessToken");
 
 
     }
@@ -47,9 +48,11 @@ public class LoginSpec {
         loginData.put("login",username);
         loginData.put("password" ,password);
 
-        ValidatableResponse loginResult= given().headers("client-id", Constant.client_Id ,"User-Agent", Constant.user_agent,"siteId", Constant.Site_id,"storeId", Constant.Store_id,"X-Requested-With","XMLHttpRequest","access-token",access_token).body(loginData)
-                .contentType(io.restassured.http.ContentType.JSON).log().all()
-                .post(Constant.loginURL).then();
+
+
+        ValidatableResponse loginResult= rest().headers("client-id", Constant.client_Id ,"User-Agent", Constant.user_agent,"siteId", Constant.Site_id,"storeId", Constant.Store_id,"X-Requested-With","XMLHttpRequest","access-token",access_token).body(loginData).log().all()
+                .contentType(io.restassured.http.ContentType.JSON)
+                .post(loginURL).then().log().all();
 
         String loginRes=loginResult.toString();
         loginResponse=objMapper(loginRes);

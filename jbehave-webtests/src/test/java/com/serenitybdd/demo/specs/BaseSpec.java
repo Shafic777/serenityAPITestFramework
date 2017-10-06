@@ -2,6 +2,8 @@ package com.serenitybdd.demo.specs;
 
 
 import com.serenitybdd.model.responce.LoginResponse;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,10 @@ public class BaseSpec {
     LoginResponse loginResponseObject;
 
     ObjectMapper mapper = new ObjectMapper();
+
+    public static EnvironmentVariables envVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+
+  //  String myCustomProperty = variables.getProperty("my.custom.property");
 
     public LoginResponse resultMapper(String loginRes) {
         try {
