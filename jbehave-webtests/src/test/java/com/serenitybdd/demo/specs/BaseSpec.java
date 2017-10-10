@@ -21,8 +21,10 @@ public class BaseSpec {
     ObjectMapper mapper = new ObjectMapper();
 
     public static EnvironmentVariables envVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    String basePath="http://"+envVariables.getProperty("hostname")+":"+envVariables.getProperty("port");
 
-  //  String myCustomProperty = variables.getProperty("my.custom.property");
+
+
 
     public LoginResponse resultMapper(ValidatableResponse loginRes) {
         try {

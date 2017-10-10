@@ -50,7 +50,7 @@ public class LoginSpec extends BaseSpec {
                 .headers("client-id", Constant.client_Id ,"User-Agent", Constant.user_agent,"siteId", Constant.Site_id,"storeId", Constant.Store_id,"X-Requested-With","XMLHttpRequest","access-token",access_token)
                 .body(loginData)
                 .contentType(io.restassured.http.ContentType.JSON)
-                .post(loginURL).then().log().all(true)
+                .post(basePath+loginURL).then().log().all(true)
                 .statusCode( 200 )
                 .extract().response().as(LoginResponse.class );
 
