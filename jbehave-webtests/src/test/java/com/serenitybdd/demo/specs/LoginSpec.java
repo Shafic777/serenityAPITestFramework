@@ -7,7 +7,6 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.ValidatableResponse;
 import net.thucydides.core.model.Story;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -26,9 +25,6 @@ public class LoginSpec extends BaseSpec {
 
     String hostname= envVariables.getProperty("serenity.hostname");
     String port=envVariables.getProperty("serenity.port");
-
-    ObjectMapper mapper = new ObjectMapper();
-
 
     public String getToken()
     {
@@ -50,21 +46,16 @@ public class LoginSpec extends BaseSpec {
 
 
 
-        ValidatableResponse loginResult= rest().headers("client-id", Constant.client_Id ,"User-Agent", Constant.user_agent,"siteId", Constant.Site_id,"storeId", Constant.Store_id,"X-Requested-With","XMLHttpRequest","access-token",access_token).body(loginData).log().all()
+         return rest()
+                .headers("client-id", Constant.client_Id ,"User-Agent", Constant.user_agent,"siteId", Constant.Site_id,"storeId", Constant.Store_id,"X-Requested-With","XMLHttpRequest","access-token",access_token)
+                .body(loginData)
                 .contentType(io.restassured.http.ContentType.JSON)
-                .post(loginURL).then().log().all();
+                .post(loginURL).then().log().all(true)
+                .statusCode( 200 )
+                .extract().response().as(LoginResponse.class );
 
-        String loginRes=loginResult.toString();
-        loginResponse=objMapper(loginRes);
-        return loginResponse;
-    }
 
-    private LoginResponse objMapper(String loginRes) {
-        try {
-            loginResponse = mapper.readValue(loginRes, LoginResponse.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return loginResponse;
-    }
+            }
+
+
 }

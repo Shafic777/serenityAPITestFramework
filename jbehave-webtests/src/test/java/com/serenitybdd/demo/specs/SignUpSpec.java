@@ -12,23 +12,20 @@ import static net.serenitybdd.rest.SerenityRest.rest;
 
 public class SignUpSpec extends BaseSpec {
 
-    @Autowired
-    LoginResponse loginResponseObject;
-
    public LoginResponse createNewUser(SignUpRequest signUpRequest)
     {
         LoginSpec loginSpecObject = new LoginSpec();
 
 
-        ValidatableResponse Result=
-                    rest()
+       return rest()
                     .headers("client-id",client_Id ,"User-Agent",user_agent,"siteId",Site_id,"storeId",Store_id,"X-Requested-With","XMLHttpRequest","access-token",loginSpecObject.getToken(),"User-Agent",user_agent)
-                    .body(signUpRequest).log().all()
+                    .body(signUpRequest)
                     .contentType(ContentType.JSON)
-                    .post(signUpURL).then().log().all();
+                    .post(signUpURL).then().log().all(true)
+                    .statusCode( 200 )
+                    .extract().response().as( LoginResponse.class );
 
-        loginResponseObject=resultMapper(Result.toString());
-        return loginResponseObject;
+
     }
 
 

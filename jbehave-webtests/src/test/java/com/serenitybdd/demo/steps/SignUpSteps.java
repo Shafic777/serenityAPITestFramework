@@ -32,7 +32,7 @@ public class SignUpSteps {
     public void thenIShouldBeableToCreatenewCustomer() {
 
         LoginResponse res= signUpSpecObj.createNewUser(signUpRequest);
-//        assertThat(res.getIsSuccess(),true);
+        assertThat(res.getIsSuccess(),true);
 
     }
 }
