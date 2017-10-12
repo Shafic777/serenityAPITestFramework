@@ -5,15 +5,18 @@ import io.restassured.http.ContentType;
 import com.serenitybdd.model.request.SignUpRequest;
 import io.restassured.response.ValidatableResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import static com.serenitybdd.constants.Constant.*;
 import static net.serenitybdd.rest.SerenityRest.given;
 import static net.serenitybdd.rest.SerenityRest.rest;
 
+@Component
 public class SignUpSpec extends BaseSpec {
 
-
-
+   @Cacheable("signUpRequestCache")
    public LoginResponse createNewUser(SignUpRequest signUpRequest)
     {
         LoginSpec loginSpecObject = new LoginSpec();

@@ -6,7 +6,7 @@ import com.serenitybdd.model.responce.LoginResponse;
 import io.restassured.response.ValidatableResponse;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;
-//import org.codehaus.jackson.map.ObjectMapper;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,8 +22,6 @@ public class BaseSpec {
 
     public static EnvironmentVariables envVariables = SystemEnvironmentVariables.createEnvironmentVariables();
     String basePath="http://"+envVariables.getProperty("hostname")+":"+envVariables.getProperty("port");
-
-
 
 
     public LoginResponse resultMapper(ValidatableResponse loginRes) {

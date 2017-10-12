@@ -8,6 +8,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.ValidatableResponse;
 import net.thucydides.core.model.Story;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import static javax.swing.text.DefaultStyledDocument.ElementSpec.ContentType;
 import static net.serenitybdd.rest.SerenityRest.given;
 import static net.serenitybdd.rest.SerenityRest.rest;
 
+@Component
 public class LoginSpec extends BaseSpec {
 
     @Autowired

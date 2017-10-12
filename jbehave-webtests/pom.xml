@@ -18,6 +18,12 @@
 
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.7.RELEASE</version>
+    </parent>
+
     <dependencies>
 
         <dependency>
@@ -136,9 +142,26 @@
             <version>4.3.11.RELEASE</version>
         </dependency>
 
+
+
+        <!-- Spring Cache-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-cache</artifactId>
+            </dependency>
+
+
+
     </dependencies>
     <build>
         <plugins>
+
+            <!-- Spring Cache-->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+            <!-- ENd Spring Cache-->
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
